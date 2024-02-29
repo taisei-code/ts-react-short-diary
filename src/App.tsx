@@ -1,9 +1,19 @@
 import './App.css'
+import Header from './components/Header'
+import Footer from './components/Footer'
+import Create from "./pages/Create";
+import Home from "./pages/Home";
+import Login from "./pages/Login";
+import NotFound from "./pages/NotFound";
+
 
 function App() {
   return (
     <>
-      <div className="text-5xl text-red-500">App</div>
+      <div>
+        <Header />
+        <Footer />
+      </div>
     </>
   );
 }
