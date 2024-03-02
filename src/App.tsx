@@ -1,21 +1,34 @@
 import './App.css'
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import Home from "./pages/Home";
 import Header from './components/Header'
 import Footer from './components/Footer'
 import Create from "./pages/Create";
-import Home from "./pages/Home";
 import Login from "./pages/Login";
-import NotFound from "./pages/NotFound";
-
+import NotFound from './pages/NotFound';
+import { auth } from './lib/firebase';
+import { useAuthState } from 'react-firebase-hooks/auth';
 
 function App() {
+
+  const [user] = useAuthState(auth)
+  
   return (
     <>
-      <div>
+      <BrowserRouter>
         <Header />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/login" element={user ? <Navigate to="/" /> : <Login />} />
+          <Route path="/create" element={user ? <Create/> : <Navigate to="/login" /> } />
+          <Route path="/*" element={<NotFound />} />
+        </Routes>
         <Footer />
-      </div>
+      </BrowserRouter>
     </>
   );
 }
 
 export default App
+
+

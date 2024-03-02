@@ -1,10 +1,24 @@
+import { doc, setDoc } from "firebase/firestore";
+import { db } from "../lib/firebase";
+import { FormEvent } from "react";
+
 const Create = () => {
+  const submitDiary = async (e: FormEvent) => {
+    e.preventDefault();
+    // Add a new document in collection "cities"
+    await setDoc(doc(db, "cities", "LA"), {
+      name: "Los Angeles",
+      state: "CA",
+      country: "USA",
+    });
+  };
+
   return (
     <main className="bg-yellow-300">
       <div className="container mx-auto">
         <div className="grid grid-cols-12">
           <div className="col-start-3  col-span-8 bg-white my-12 p-4 rounded">
-            <form action="">
+            <form onSubmit={submitDiary}>
               <h2 className="text-3xl font-bold mb-5">記事を書く✏️</h2>
               <div className="mb-10">
                 <h3 className="text-2xl mb-2">サムネを選ぶ</h3>
@@ -38,7 +52,7 @@ const Create = () => {
                 ></textarea>
               </div>
               <button className="bg-blue-700 text-white py-2 px-7 rounded">
-                Save
+                投稿
               </button>
             </form>
           </div>

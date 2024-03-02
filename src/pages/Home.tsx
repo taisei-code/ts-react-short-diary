@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 const Home = () => {
   return (
     <main className="bg-yellow-300 h-screen">
@@ -8,7 +10,7 @@ const Home = () => {
               みんなの日記
             </h2>
             <button className="rounded py-2 px-5 border border-black bg-white">
-              <a href="/create">日記を書く✏️</a>
+              <Link to="/create">日記を書く</Link>
             </button>
           </div>
           <ul className="grid lg:grid-cols-8 md:grid-cols-4 gap-10">
